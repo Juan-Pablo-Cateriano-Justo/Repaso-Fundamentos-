@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Álgebra Lineal - Matrices</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/sound/main.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Bitácora CC</h2>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="vectores.html">📐 Vectores y Ángulos</a>
+        <a href="matrices.html" class="active">⬡ Matrices Operacionales</a>
+        <a href="complejidad.html">⏱️ Complejidad Temporal</a>
+    </div>
+
+    <div class="content-wrapper">
+        <h1>Operaciones Complejas con Matrices</h1>
+        <p class="subtitle">Transposición, productos algebraicos y simplificación matricial.</p>
+
+        <div class="card">
+            <h3>Demostración de Propiedad Transpuesta</h3>
+            <p>Dada la ecuación algebraica matricial:</p>
+            $$3(X^T + 2A)^T - 2(B^T C)^T = 4(B^T C)^T + 5(X - A^T)$$
+            
+            <p>Aplicando las propiedades $(A+B)^T = A^T + B^T$ y $(A^T)^T = A$, reducimos paso a paso el problema:</p>
+            $$3X + 6A^T - 2C^T B = 4C^T B + 5X - 5A^T$$
+            
+            <p>Despejando nuestra matriz incógnita $X$, obtenemos la solución elegante:</p>
+            $$-2X = 6C^T B - 11A^T \Rightarrow X = -3C^T B + \frac{11}{2}A^T$$
+        </div>
+
+        <div class="card">
+            <h3>Visualizador Interactivo de Celdas</h3>
+            <p>Pasa el mouse sobre las celdas de la matriz resultado para simular una consulta de coordenadas de memoria:</p>
+            <div class="matrix-visualizer" id="matrixContainer">
+                </div>
+            <p id="matrixInfo" style="text-align: center; color: var(--accent); min-height: 20px;"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
