@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Análisis de Algoritmos - Complejidad</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/sound/main.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Bitácora CC</h2>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="vectores.html">📐 Vectores y Ángulos</a>
+        <a href="matrices.html">⬡ Matrices Operacionales</a>
+        <a href="complejidad.html" class="active">⏱️ Complejidad Temporal</a>
+    </div>
+
+    <div class="content-wrapper">
+        <h1>Análisis de Complejidad Temporal</h1>
+        <p class="subtitle">Demostraciones formales de cotas superiores asintóticas y recurrencias.</p>
+
+        <div class="card">
+            <h3>1. Demostración Formal de $\mathcal{O}(x)$</h3>
+            <p><strong>Problema:</strong> Demostrar si la función cuadrática $f(x) = x^2 + x + 1$ pertenece al orden $\mathcal{O}(x)$.</p>
+            <h4>Análisis Teórico:</h4>
+            <p>Buscamos constantes $C > 0$ y $k \ge 1$ tales que para todo $x > k$ se cumpla:</p>
+            $$x^2 + x + 1 \le C \cdot x$$
+            <p>Si dividimos toda la inecuación entre $x$ para analizar su comportamiento:</p>
+            $$x + 1 + \frac{1}{x} \le C$$
+            <p>A medida que $x \to \infty$, el término lineal $x$ crece indefinidamente, impidiendo que sea acotado por una constante fija $C$. Por lo tanto, <strong>$f(x) \notin \mathcal{O}(x)$</strong> debido a que el grado del polinomio es mayor que 1.</p>
+        </div>
+
+        <div class="card">
+            <h3>2. Conteo de Operaciones y Sumas de Gauss</h3>
+            <p>Analicemos un bucle dependiente donde el índice interno varía con respecto al externo:</p>
+            <pre><code>def algoritmo_dependiente(n):
+    total = 0
+    for i in range(1, n + 1):
+        for j in range(1, i + 1):
+            total += 1
+    return total</code></pre>
+            <h4>Cálculo de la Ecuación de Costo:</h4>
+            <p>El bucle interno se ejecuta exactamente $i$ veces por cada iteración del ciclo externo. Expresamos el número total de incrementos mediante una sumatoria aritmética:</p>
+            $$T(n) = \sum_{i=1}^{n} i = \frac{n(n+1)}{2} = \frac{1}{2}n^2 + \frac{1}{2}n$$
+            <p>Al descartar los coeficientes constantes y los términos de menor orden, demostramos matemáticamente que el algoritmo pertenece al orden cuadrático <strong>$\mathcal{O}(n^2)$</strong>.</p>
+        </div>
+
+        <div class="card">
+            <h3>3. División y Conquista (Teorema Maestro)</h3>
+            <p>Para funciones recursivas que dividen el espacio de trabajo en partes iguales, como el ordenamiento por mezcla (Merge Sort), planteamos su ecuación de recurrencia:</p>
+            $$T(n) = 2T\left(\frac{n}{2}\right) + \mathcal{O}(n)$$
+            <p>Aplicando el <strong>Teorema Maestro</strong> con $a=2$, $b=2$ y $f(n) = n^1$:</p>
+            $$\log_b(a) = \log_2(2) = 1 \implies \text{Como } \log_b(a) == 1, \text{ caemos en el Caso 2.}$$
+            <p>Por consiguiente, la complejidad exacta del algoritmo es de orden lineal-logarítmico: <strong>$\mathcal{O}(n \log n)$</strong>.</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
