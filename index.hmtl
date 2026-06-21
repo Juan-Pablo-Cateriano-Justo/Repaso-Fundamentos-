@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora Académica: Algoritmos y Geometría</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/sound/main.js"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --text-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Menú Lateral */
+        nav {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        nav h1 {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        /* Contenedor Principal */
+        main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos de código */
+        pre {
+            background-color: #0b0f19;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        code {
+            font-family: 'Fira Code', Consolas, Monaco, monospace;
+            color: #f1f5f9;
+        }
+
+        /* Gráficos con CSS puro (Ejemplo Vectorial) */
+        .vector-graph {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            border: 1px solid var(--border-color);
+            margin: 20px auto;
+            position: relative;
+            background: #131c2e;
+            border-radius: 6px;
+        }
+
+        .axis-x {
+            position: absolute;
+            top: 70%;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: #475569;
+        }
+
+        .axis-y {
+            position: absolute;
+            left: 30%;
+            top: 10%;
+            width: 2px;
+            height: 80%;
+            background: #475569;
+        }
+
+        /* Animación simple */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Mi Bitácora de CC</h1>
+        <a href="#inicio" onclick="showSection('inicio')" class="active">🏠 Inicio</a>
+        <a href="#vectores" onclick="showSection('vectores')">📐 Vectores y Ángulos</a>
+        <a href="#planos" onclick="showSection('planos')">⬡ Planos en el Espacio</a>
+        <a href="#complejidad" onclick="showSection('complejidad')">⏱️ Complejidad Temporal</a>
+    </nav>
+
+    <main>
+        <section id="inicio" class="active">
+            <h2>Portafolio Académico</h2>
+            <div class="card">
+                <p>¡Bienvenido/a! En este espacio interactivo expongo de manera visual, analítica y ordenada la resolución de problemas matemáticos complejos y el análisis riguroso de algoritmos.</p>
+                <p>Usa el menú lateral para explorar las diferentes secciones.</p>
+            </div>
+        </section>
+
+        <section id="vectores">
+            <h2>Ángulos entre Vectores y Proyecciones</h2>
+            <div class="card">
+                <h3>Problema de Aplicación: Hallar $k$ para un ángulo de $45^\circ$</h3>
+                <p>Dados los vectores $\vec{u}=(k,1)$ y $\vec{v}=(3,4)$, busquemos el valor de $k$ para que el ángulo sea exactamente de $45^\circ$.</p>
+                
+                <h4>Desarrollo Matemático:</h4>
+                <p>Usamos la definición del producto escalar:</p>
+                $$\cos(45^\circ) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} \Rightarrow \frac{1}{\sqrt{2}} = \frac{3k + 4}{\sqrt{k^2 + 1}\sqrt{3^2 + 4^2}}$$
+                $$\frac{1}{\sqrt{2}} = \frac{3k + 4}{5\sqrt{k^2 + 1}}$$
+                
+                <p>Elevando ambos miembros al cuadrado y resolviendo la ecuación cuadrática obtenemos:</p>
+                $$7k^2 - 48k - 7 = 0 \Rightarrow (7k + 1)(k - 7) = 0$$
+                <p>Por lo tanto, los valores válidos son <strong>$k = 7$</strong> y <strong>$k = -\frac{1}{7}$</strong>.</p>
+            </div>
+        </section>
+
+        <section id="planos">
+            <h2>Geometría en el Espacio: Planos Secantes</h2>
+            <div class="card">
+                <h3>Ecuación del Plano a partir de Rectas Secantes</h3>
+                <p>Si tenemos dos rectas que se intersectan en un punto, el vector normal del plano se obtiene mediante el <strong>producto vectorial</strong> de los vectores directores de ambas rectas.</p>
+                $$\vec{n} = \vec{d_1} \times \vec{d_2}$$
+            </div>
+        </section>
+
+        <section id="complejidad">
+            <h2>Análisis de Complejidad Temporal</h2>
+            <div class="card">
+                <h3>Análisis del Orden $\mathcal{O}(n \log n)$</h3>
+                <p>Consideremos un ejemplo clásico donde combinamos un ciclo lineal con reducciones logarítmicas:</p>
+                <pre><code>def ejercicio_1(n):
+    resultado = 0
+    for i in range(1, n + 1):
+        j = n
+        while j > 0:
+            resultado += 1
+            j = j // 2
+    return resultado</code></pre>
+                <h4>Explicación:</h4>
+                <ul>
+                    <li>El bucle externo se ejecuta exactamente $n$ veces de manera lineal.</li>
+                    <li>El bucle interno divide consecutivamente $j$ entre 2, lo que toma un tiempo de $\log_2(n)$ pasos.</li>
+                    <li>Al estar anidados, multiplicamos sus complejidades resultando en un costo total de $\mathcal{O}(n \log n)$.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Función para alternar entre pestañas de forma fluida
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+            // Quitar clase activa a los enlaces
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            
+            // Mostrar sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            // Activar enlace presionado
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
