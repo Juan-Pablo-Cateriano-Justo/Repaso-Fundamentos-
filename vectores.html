@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Geometría Analítica - Vectores</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/sound/main.js"></script>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Bitácora CC</h2>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="vectores.html" class="active">📐 Vectores y Ángulos</a>
+        <a href="matrices.html">⬡ Matrices Operacionales</a>
+        <a href="complejidad.html">⏱️ Complejidad Temporal</a>
+    </div>
+
+    <div class="content-wrapper">
+        <h1>Estudio de Vectores en $\mathbb{R}^2$ y $\mathbb{R}^3$</h1>
+        <p class="subtitle">Ángulos, proyecciones ortogonales y producto escalar.</p>
+
+        <div class="card">
+            <h3>1. Determinación de Parámetros para Ángulos Fijos</h3>
+            <p><strong>Problema:</strong> Determinar los valores de $k$ para que el ángulo entre $\vec{u}=(k,1)$ y $\vec{v}=(3,4)$ sea exactamente de $45^{\circ}$.</p>
+            <h4>Resolución Analítica:</h4>
+            <p>Usando la propiedad del producto escalar:</p>
+            $$\cos(45^{\circ}) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\|\|\vec{v}\|} \Rightarrow \frac{1}{\sqrt{2}} = \frac{3k + 4}{\sqrt{k^2+1}\sqrt{3^2+4^2}}$$
+            <p>Elevando al cuadrado ambos miembros para eliminar las raíces:</p>
+            $$\frac{25}{2} = \frac{9k^2 + 24k + 16}{1+k^2} \Rightarrow 7k^2 - 48k - 7 = 0$$
+            <p>Factorizando por aspa simple obtenemos: $(7k+1)(k-7)=0$, lo que nos da dos soluciones tranquilas:</p>
+            $$k = 7 \quad \text{ó} \quad k = -\frac{1}{7}$$
+        </div>
+
+        <div class="card">
+            <h3>2. Proyección Ortogonal con Vectores Perpendiculares</h3>
+            <p><strong>Problema:</strong> Dados los vectores ortogonales $\vec{a}=(x-2; x+1)$ y $\vec{b}=(x-5; -2)$ con $x > 3$. Hallar la proyección de $\vec{a}$ sobre $\vec{c}=(2;-1)$.</p>
+            <h4>Resolución Analítica:</h4>
+            <p>Como $\vec{a} \perp \vec{b}$, su producto escalar es cero ($\vec{a} \cdot \vec{b} = 0$):</p>
+            $$(x-2)(x-5) + (x+1)(-2) = 0 \Rightarrow x^2 - 9x + 8 = 0$$
+            <p>Resolviendo la cuadrática obtenemos $(x-8)(x-1)=0$. Dado que la restricción es $x > 3$, tomamos **$x = 8$**.</p>
+            <p>Sustituyendo $x$, el vector es $\vec{a} = (6, 9)$. Ahora calculamos la proyección sobre $\vec{c}$:</p>
+            $$\text{Proy}_{\vec{c}}\vec{a} = \left(\frac{\vec{a} \cdot \vec{c}}{\|\vec{c}\|^2}\right)\vec{c} = \left(\frac{6(2) + 9(-1)}{2^2 + (-1)^2}\right)(2, -1) = \frac{3}{5}(2, -1) = \left(\frac{6}{5}, -\frac{3}{5}\right)$$
+        </div>
+
+        <div class="card">
+            <h3>Visualizador Gráfico de Vectores</h3>
+            <p>Usa los controles deslizantes para alterar el vector dinámicamente y observar cómo cambia en el plano.</p>
+            <div style="text-align: center; margin: 20px 0;">
+                <canvas id="vectorCanvas" width="300" height="300" style="background:#131c2e; border:1px solid var(--border); border-radius:8px;"></canvas>
+                <div style="margin-top: 15px;">
+                    <label>Componente X: <input type="range" id="sliderX" min="-5" max="5" value="3" step="0.5"></label>
+                    <br><br>
+                    <label>Componente Y: <input type="range" id="sliderY" min="-5" max="5" value="4" step="0.5"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
